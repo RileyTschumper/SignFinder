@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SignFinder</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- <script type="text/javascript" src="js/map.js"></script> -->
+</head>
+<body>
+	<h1>Sign Finder</h1>
+	<div id="map"></div>
+	<script>
+		function initMap() 
+		{
+			//Map input options
+			var inputOptions = {center: {lat: 44.943770, lng: -93.191565}, zoom:13}	
+
+			//creates a new map
+		    var map = new google.maps.Map(document.getElementById('map'), 
+		    	inputOptions);
+
+		    //Add a marker
+		    var marker = new google.maps.Marker({
+		    	position:{lat: 44.943770, lng: -93.191565},
+		    	map: map
+		    })
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdX1za1jWrBizDM20derjtJc0BAPyYuqw&callback=initMap"
+    async defer></script>
+</body>
+</html>
