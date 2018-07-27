@@ -1,7 +1,13 @@
 <?php
 
-include 'xml_template.php';
+// include 'xml_template.php';
 include 'dbinfo.php';
+
+$xmlstr = <<<XML
+<?xml version='1.0' standalone='yes'?>
+<markers>
+</markers>
+XML;
 
 $mysqli = new mysqli('localhost', $username, $password, $database);
 
