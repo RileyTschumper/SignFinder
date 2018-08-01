@@ -6,6 +6,7 @@ var customLabel = {
           label: 'B'
         }
       };
+
       
 var map;
 var marker;
@@ -67,18 +68,30 @@ function initMap() {
 	    content: document.getElementById('message')
 	});
 
-	var cone = document.getElementById("closure");
+	var cone = document.getElementById("cone");
 	var worker = document.getElementById("worker");
 	var closure = document.getElementById("closure");
 
-	//cone.addEventListener('click')
+	cone.onclick = function(){ addMapListener('icons/cone.png');};
+
+	//cone.addEventListener('click', addMapListener('icons/cone.png'));
+	//worker.addEventListener('click', addMapListener('icons/worker.png'));
+	//closure.addEventListener('click', addMapListener('icons/closure.png'));
 
 	//adds an event listenter to the map, which performs the function on-click
+
+
+}
+
+//adds an event listenter to the map, which performs the function on-click
+function addMapListener(iconType){
+	console.log("listening on map");
 	google.maps.event.addListener(map, 'click', function(event) {
 		//adds a marker at the position of the click event on map
 	    marker = new google.maps.Marker({
 	        position: event.latLng,
-	        map: map
+	        map: map,
+	        icon: iconType
 		});
 
 	    //opens formwindow if marker is clicked on
@@ -107,6 +120,7 @@ function saveData() {
 	        messagewindow.open(map, marker);
 	    }
 	});
+	
 }
 
 function downloadUrlDataAdd(url, callback) {
