@@ -67,6 +67,12 @@ function initMap() {
 	    content: document.getElementById('message')
 	});
 
+	var cone = document.getElementById("closure");
+	var worker = document.getElementById("worker");
+	var closure = document.getElementById("closure");
+
+	//cone.addEventListener('click')
+
 	//adds an event listenter to the map, which performs the function on-click
 	google.maps.event.addListener(map, 'click', function(event) {
 		//adds a marker at the position of the click event on map
