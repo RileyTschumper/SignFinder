@@ -73,12 +73,8 @@ function initMap() {
 	var closure = document.getElementById("closure");
 
 	cone.onclick = function(){ addMapListener('icons/cone.png');};
-
-	//cone.addEventListener('click', addMapListener('icons/cone.png'));
-	//worker.addEventListener('click', addMapListener('icons/worker.png'));
-	//closure.addEventListener('click', addMapListener('icons/closure.png'));
-
-	//adds an event listenter to the map, which performs the function on-click
+	worker.onclick = function(){ addMapListener('icons/worker.png');};
+	closure.onclick = function(){ addMapListener('icons/closure.png');};
 
 
 }
@@ -93,6 +89,8 @@ function addMapListener(iconType){
 	        map: map,
 	        icon: iconType
 		});
+		//Only allows the user to place down one marker before clearing listener
+	    google.maps.event.clearInstanceListeners(map);
 
 	    //opens formwindow if marker is clicked on
 		google.maps.event.addListener(marker, 'click', function() {
@@ -120,7 +118,6 @@ function saveData() {
 	        messagewindow.open(map, marker);
 	    }
 	});
-	
 }
 
 function downloadUrlDataAdd(url, callback) {
