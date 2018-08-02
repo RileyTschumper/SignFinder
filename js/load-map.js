@@ -7,6 +7,17 @@ var customLabel = {
         }
       };
 
+var customIcon = {
+	cone: {
+		icon: "icons/cone.png"
+	},
+	closure: {
+		icon: "icons/closure.png"
+	},
+	worker: {
+		icon: "icons/worker.png"
+	}
+};
       
 var map;
 var marker;
