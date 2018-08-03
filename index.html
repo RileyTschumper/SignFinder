@@ -22,7 +22,7 @@
    </div>
 
   
-<!-- HTML for the info window form fields.  -->
+<!-- HTML for the info window form fields.  
    <div id="form">
      <table>
      <tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>
@@ -34,6 +34,17 @@
                 <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
      </table>
    </div>
+-->
+   <div id="form">
+     <table>
+     <tr><td>Date Placed: </td> <td id='date_placed'> </td> </tr>
+     <tr><td>Pickup Date: </td><td> <input type='text' id='pickup_date'/></td></tr>
+     <tr><td>Sign Type: </td> <td id='sign_type'></td></tr>
+     <tr><td>Additional Info:</td><td><textarea rows="3" id='additional_info' > </textarea></td></tr>
+     <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td></tr>
+     </table>
+   </div>
+
 
    <!-- Defines the info window text that displays on saving the info window form. -->
    <div id="message">Location saved</div>

@@ -12,7 +12,7 @@ XML;
 $mysqli = new mysqli('localhost', $username, $password, $database);
 
 // Select all the rows in the markers table
-$query= "SELECT * FROM markers WHERE 1";
+$query= "SELECT * FROM markers_icons WHERE 1";
 $result = $mysqli->query($query);
 
 if (!$result) {
@@ -30,11 +30,13 @@ while ($row = @mysqli_fetch_assoc($result)){
 	$marker = $markers->addChild('marker');
 	
 	$marker->addAttribute('id', $row['id']);
-	$marker->addAttribute('name', $row['name']);
-	$marker->addAttribute('address', $row['address']);
+	$marker->addAttribute('placed', $row['placed']);
+	$marker->addAttribute('pickup', $row['pickup']);
+	$marker->addAttribute('type', $row['type']);
+	$marker->addAttribute('info', $row['info']);
 	$marker->addAttribute('lat', $row['lat']);
 	$marker->addAttribute('lng', $row['lng']);
-	$marker->addAttribute('type', $row['type']);
+	
 
 }
 

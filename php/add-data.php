@@ -1,24 +1,26 @@
 <?php
 include 'dbinfo.php';
 
-$name = $_GET['name'];
-$address = $_GET['address'];
+$placedDate = $_GET['placedDate'];
+$pickupDate = $_GET['pickupDate'];
 $lat = $_GET['lat'];
 $lng = $_GET['lng'];
-$type = $_GET['type'];
+$signType = $_GET['signType'];
+$info = $_GET['info'];
 
 $mysqli = new mysqli('localhost', $username, $password, $database);
 
 // Inserts new row with place data.
 // sprintf returns a formatted string
-$query = sprintf("INSERT INTO markers " .
-         " (id, name, address, lat, lng, type ) " .
-         " VALUES (NULL, '%s', '%s', '%s', '%s', '%s');",
-         $mysqli->real_escape_string($name),
-         $mysqli->real_escape_string($address),
+$query = sprintf("INSERT INTO markers_icons " .
+         " (id, placed, pickup, type, info, lat, lng ) " .
+         " VALUES (NULL, '%s', '%s', '%s', '%s', '%s', '%s');",
+         $mysqli->real_escape_string($placedDate),
+         $mysqli->real_escape_string($pickupDate),
+         $mysqli->real_escape_string($signType),
+         $mysqli->real_escape_string($info),
          $mysqli->real_escape_string($lat),
-         $mysqli->real_escape_string($lng),
-         $mysqli->real_escape_string($type));
+         $mysqli->real_escape_string($lng));
 
 $result = $mysqli->query($query);
 

@@ -9,13 +9,13 @@ var customLabel = {
 
 var customIcon = {
 	cone: {
-		icon: "icons/cone.png"
+		iconURL: "icons/cone.png"
 	},
 	closure: {
-		icon: "icons/closure.png"
+		iconURL: "icons/closure.png"
 	},
 	worker: {
-		icon: "icons/worker.png"
+		iconURL: "icons/worker.png"
 	}
 };
       
@@ -42,27 +42,38 @@ function initMap() {
     	var markers = xml.documentElement.getElementsByTagName('marker');
       	Array.prototype.forEach.call(markers, function(markerElem) {
         	var id = markerElem.getAttribute('id');
-        	var name = markerElem.getAttribute('name');
-        	var address = markerElem.getAttribute('address');
+        	var placed = markerElem.getAttribute('placed');
+        	var pickup = markerElem.getAttribute('pickup');
         	var type = markerElem.getAttribute('type');
+        	var info = markerElem.getAttribute('info')
         	var point = new google.maps.LatLng(
           		parseFloat(markerElem.getAttribute('lat')),
           		parseFloat(markerElem.getAttribute('lng')));
 
+        	//Creates content for info window
         	var infowincontent = document.createElement('div');
         	var strong = document.createElement('strong');
-        	strong.textContent = name
+        	strong.textContent = getLongHand(type)
         	infowincontent.appendChild(strong);
+
+        	infowincontent.appendChild(document.createElement('br'));
+
+        	var pickupText = document.createElement('text');
+        	pickupText.textContent = pickup
+        	infowincontent.appendChild(pickupText);
+
         	infowincontent.appendChild(document.createElement('br'));
 
         	var text = document.createElement('text');
-        	text.textContent = address
+        	text.textContent = info
         	infowincontent.appendChild(text);
-        	var icon = customLabel[type] || {};
+
+        	//adds marker with custom icon
+        	var icon = customIcon[type] || {};
         	var marker = new google.maps.Marker({
           		map: map,
           		position: point,
-          		label: icon.label
+          		icon: icon.iconURL
         	});
         	marker.addListener('click', function() {
           		infoWindow.setContent(infowincontent);
@@ -83,28 +94,57 @@ function initMap() {
 	var worker = document.getElementById("worker");
 	var closure = document.getElementById("closure");
 
-	cone.onclick = function(){ addMapListener('icons/cone.png');};
-	worker.onclick = function(){ addMapListener('icons/worker.png');};
-	closure.onclick = function(){ addMapListener('icons/closure.png');};
+	cone.onclick = function(){ addMapListener("Traffic Cone",'icons/cone.png');};
+	worker.onclick = function(){ addMapListener("Workers Present",'icons/worker.png');};
+	closure.onclick = function(){ addMapListener("Road Closure",'icons/closure.png');};
 
 
 }
 
+function getShortHand(longHand){
+	var typeMap = new Map();
+
+	typeMap.set("Traffic Cone","cone");
+	typeMap.set("Workers Present", "worker");
+	typeMap.set("Road Closure", "closure");
+
+	return typeMap.get(longHand);
+}
+
+function getLongHand(shortHand){
+	var typeMap = new Map();
+
+	typeMap.set("cone","Traffic Cone");
+	typeMap.set("worker", "Workers Present");
+	typeMap.set("closure", "Road Closure");
+
+	return typeMap.get(shortHand);
+}
+
+
 //adds an event listenter to the map, which performs the function on-click
-function addMapListener(iconType){
+function addMapListener(iconType,iconLocation){
 	console.log("listening on map");
 	google.maps.event.addListener(map, 'click', function(event) {
 		//adds a marker at the position of the click event on map
 	    marker = new google.maps.Marker({
 	        position: event.latLng,
 	        map: map,
-	        icon: iconType
+	        icon: iconLocation
 		});
 		//Only allows the user to place down one marker before clearing listener
 	    google.maps.event.clearInstanceListeners(map);
 
 	    //opens formwindow if marker is clicked on
 		google.maps.event.addListener(marker, 'click', function() {
+			//adds current time and date to form
+			//Bug: Doesn't use the users timezone. Checkout moment.js library for possible fix
+			var d = new Date();
+			document.getElementById("date_placed").innerHTML = d.toUTCString();
+
+			//adds sign type to form
+			document.getElementById("sign_type").innerHTML = iconType;
+
 	        formwindow.open(map, marker);
 	    });
 	});
@@ -112,18 +152,25 @@ function addMapListener(iconType){
 
 function saveData() {
 	//stores each input value as variable
-	var name = escape(document.getElementById('name').value);
-	var address = escape(document.getElementById('address').value);
-	var type = document.getElementById('type').value;
+	var placedDate = document.getElementById('date_placed').innerHTML;
+	var pickupDate = escape(document.getElementById('pickup_date').value);
+	var signType = getShortHand(document.getElementById('sign_type').innerHTML);
+	console.log(signType);
+	var additionalInfo = escape(document.getElementById('additional_info').value);
 	var latlng = marker.getPosition();
 	//creates a URL with 5 parameters to $_GET in php
-	var url = 'http://localhost/SignFinder/php/add-data.php?name=' + name + '&address=' + address + 
-				'&type=' + type + '&lat=' + latlng.lat() + '&lng=' + latlng.lng();
+	var url = 'http://localhost/SignFinder/php/add-data.php?placedDate=' + placedDate + '&pickupDate=' + pickupDate + 
+				'&signType=' + signType + '&info=' + additionalInfo + '&lat=' + latlng.lat() + '&lng=' + latlng.lng();
 
 
 	downloadUrlUserAdd(url, function(data, responseCode) {
+		console.log("in downloadUrlDataAdd");
 		//if request was fullfilled
-	    if (responseCode == 200 && data.length <= 1) {
+		console.log("responseCode: " + responseCode);
+		console.log("data.length: " + data.length);
+		if (responseCode == 200 && data.length <= 1) {
+	    //if (responseCode == 200) {
+	    	console.log("in if statement");
 	    	//close infowidow and open "Location Saved" window
 	        formwindow.close();
 	        messagewindow.open(map, marker);
