@@ -59,13 +59,13 @@ function initMap() {
         	infowincontent.appendChild(document.createElement('br'));
 
         	var pickupText = document.createElement('text');
-        	pickupText.textContent = pickup
+        	pickupText.textContent = "Pickup Date: " + pickup
         	infowincontent.appendChild(pickupText);
 
         	infowincontent.appendChild(document.createElement('br'));
 
         	var text = document.createElement('text');
-        	text.textContent = info
+        	text.textContent = "Notes: " + info
         	infowincontent.appendChild(text);
 
         	//adds marker with custom icon
@@ -135,19 +135,29 @@ function addMapListener(iconType,iconLocation){
 		//Only allows the user to place down one marker before clearing listener
 	    google.maps.event.clearInstanceListeners(map);
 
-	    //opens formwindow if marker is clicked on
-		google.maps.event.addListener(marker, 'click', function() {
-			//adds current time and date to form
-			//Bug: Doesn't use the users timezone. Checkout moment.js library for possible fix
-			var d = new Date();
-			document.getElementById("date_placed").innerHTML = d.toUTCString();
+		//automatically opens form window when icon is placed down
+	    openFormWindow(map,marker);
 
-			//adds sign type to form
-			document.getElementById("sign_type").innerHTML = iconType;
+		//adds current time and date to form
+		//Bug: Doesn't use the users timezone. Checkout moment.js library for possible fix
+		var d = new Date();
+		console.log(d.toUTCString());
 
-	        formwindow.open(map, marker);
-	    });
+		//adds date place to form
+		document.getElementById("date_placed").innerHTML = d.toUTCString();
+		//adds sign type to form
+		document.getElementById("sign_type").innerHTML = iconType;
+
 	});
+}
+
+function deleteMarker(){
+
+	//clears marker from the map
+	marker.setMap(null);
+
+	//cancels the map listener that causes an alert for not saving or canceling
+	google.maps.event.clearInstanceListeners(map);
 }
 
 function saveData() {
@@ -176,6 +186,18 @@ function saveData() {
 	        messagewindow.open(map, marker);
 	    }
 	});
+
+	//cancels the map listener that causes an alert for not saving or canceling
+	google.maps.event.clearInstanceListeners(map);
+}
+
+function openFormWindow(googleMap, theMarker){
+	formwindow.open(googleMap, theMarker);
+
+	google.maps.event.addListener(map, 'click', function(event) {
+		//adds a marker at the position of the click event on map
+	    alert("You must save or cancel marker");
+		});
 }
 
 function downloadUrlDataAdd(url, callback) {
