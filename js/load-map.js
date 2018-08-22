@@ -174,13 +174,7 @@ function saveData() {
 
 
 	downloadUrlUserAdd(url, function(data, responseCode) {
-		console.log("in downloadUrlDataAdd");
-		//if request was fullfilled
-		console.log("responseCode: " + responseCode);
-		console.log("data.length: " + data.length);
 		if (responseCode == 200 && data.length <= 1) {
-	    //if (responseCode == 200) {
-	    	console.log("in if statement");
 	    	//close infowidow and open "Location Saved" window
 	        formwindow.close();
 	        messagewindow.open(map, marker);
@@ -189,6 +183,10 @@ function saveData() {
 
 	//cancels the map listener that causes an alert for not saving or canceling
 	google.maps.event.clearInstanceListeners(map);
+
+	//Reloads map
+	initMap();
+
 }
 
 function openFormWindow(googleMap, theMarker){
