@@ -15,25 +15,25 @@
   <div class="navBar">
     <span id="logo">Sign Finder</span>
 
-    <a id="mySigns">Table View</a>
+    <a href="php/table.php" id="mySigns">Table View</a>
 
   </div>
 
-  <div id="map" height="460px" width="100%">test</div>
+  <div id="map" height="460px " width="100% ">test</div>
 
   <div class="dropDown">
     <button class="dropButton dButtons"><img class="icons" src="./icons/plus.png"></button>
 
     <div class="dropContent">
-      <button class="dButtons" id="closure"><img class="icons" src="./icons/closure.png"></button>
-      <button class="dButtons" id="cone"><img class="icons" src="./icons/cone.png"></button>
-      <button class="dButtons" id="worker"><img class="icons" src="./icons/worker.png"></button>
+      <button class="dButtons" id="closure"><img class="icons " src="./icons/closure.png"></button>
+      <button class="dButtons" id="cone"><img class="icons " src="./icons/cone.png"></button>
+      <button class="dButtons" id="worker"><img class="icons " src="./icons/worker.png"></button>
     </div>
   </div>
 
 
   <!-- HTML for the info window form fields.  
-   <div id="form">
+   <div id="form ">
      <table>
      <tr><td>Name:</td> <td><input type='text' id='name'/> </td> </tr>
      <tr><td>Address:</td> <td><input type='text' id='address'/> </td> </tr>
@@ -54,7 +54,7 @@
       <!-- <tr><td>Pickup Date: </td><td> <input type='text' id='pickup_date'/></td></tr> -->
       <tr>
         <td>Pickup Date: </td>
-        <td><input type="text" name="date" id="pickup_date" data-select="datepicker"> </td>
+        <td><input type="text " name="date " id="pickup_date" data-select="datepicker" readonly> </td>
       </tr>
       <tr>
         <td>Sign Type: </td>
@@ -67,27 +67,28 @@
       <tr>
         <td></td>
         <td><input type='button' value='Save' onclick='saveData()' /></td>
-        <td><input type='button' value="Cancel" onclick='deleteMarker()'></td>
+        <td><input type='button' value="Cancel " onclick='deleteMarker()'></td>
       </tr>
     </table>
   </div>
 
 
   <!-- Defines the info window text that displays on saving the info window form. -->
-  <!-- <div id="message">Location saved</div> -->
+  <!-- <div id="message ">Location saved</div> -->
   <div id="message">
     <svg width="27" height="27" viewbox="0 0 27 27">
-      <path class="path" fill="white" stroke="#92B558" stroke-width="2" stroke-miterlimit="10" width="100px" height="100px" viewBox="0 0 34 30"
-        enable-background="new 0 0 34 33" xml:space="preserve" d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+      <path class="path " fill="white " stroke="#92B558" stroke-width="2" stroke-miterlimit="10" width="100px
+      " height="100px " viewBox="0 0 34 30 " enable-background="new 0 0 34 33 " xml:space="preserve " d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622
+      3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z "
       />
     </svg></div>
 
-  <!-- <script src="js/user-added.js"></script> -->
-  <!-- <script src="js/add-markers.js"></script> -->
+  <!-- <script src="js/user-added.js "></script> -->
+  <!-- <script src="js/add-markers.js "></script> -->
 
 
-  <script src="js/load-map.js?1"></script>
-  <!-- <script src="js/add.js"></script> -->
+  <script src="js/load-map.js"></script>
+  <!-- <script src="js/add.js "></script> -->
 
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV0kwE564QnAoy3NdhF6KH2jFKxYdwWi0&callback=initMap">

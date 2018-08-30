@@ -94,6 +94,8 @@ function initMap() {
   var worker = document.getElementById("worker");
   var closure = document.getElementById("closure");
 
+  console.log(cone);
+
   cone.onclick = function() {
     addMapListener("Traffic Cone", "icons/cone.png");
   };

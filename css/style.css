@@ -1,102 +1,124 @@
 /* Makes the sample page fill the window. */
-html, body {
-height: 100%;
-margin: 0;
-padding: 0;
-font-family: 'Sunflower', sans-serif;
-font-weight: lighter;
-
-
+html,
+body {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Sunflower", sans-serif;
+  font-weight: lighter;
 }
 
+table {
+  display: flex;
+  justify-content: center;
+  border-collapse: collapse;
+  min-width: 70%;
+}
 
-.navBar{
+th,
+td {
+  border-bottom: 1px solid #36404c;
+  width: 20%;
+  height: 50px;
+  font-size: 16px;
+}
+
+th {
+  color: #ef8887;
+}
+
+td:hover {
+  background-color: #f4cd8a;
+  color: white;
+}
+
+.navBar {
   position: relative;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   background-color: #36404c;
-  width:100%;
+  width: 100%;
   height: 10%;
   z-index: 100;
   display: block;
-  color:white;
-
+  color: white;
 }
 
-#mySigns{
-  width:30%;
+#mySigns {
+  width: 30%;
   height: 48px;
   background-color: #36404c;
   color: #f4cd8a;
   outline: none;
-  margin-left:100px;
-  margin-right:50px;
+  margin-left: 100px;
+  margin-right: 50px;
   font-size: 38px;
   text-align: center;
   cursor: pointer;
-  
+  text-decoration: none;
 }
 
-#home:hover, #mySigns:hover{
-  color:white;
+#home:hover,
+#mySigns:hover {
+  color: white;
+  text-decoration: none;
 }
 
-#logo{
+#logo {
   font-size: 48px;
-  color:#ef8887;
+  color: #ef8887;
   cursor: pointer;
-
+  text-decoration: none;
 }
 
 /* Always set the map height explicitly to define the size of the div
-* element that contains the map. */
+  * element that contains the map. */
 #map {
   height: 90%;
-  
 }
 
-.dButtons{
+.dButtons {
   display: block;
   border-radius: 50%;
   padding: 12px;
   background-color: rgba(255, 255, 255, 0.6);
-  color: black; 
+  color: black;
   border: 2px solid #eb9091;
   outline: none;
   cursor: pointer;
 }
 
-.icons{
+.icons {
   width: 50px;
 }
 
 .dButtons:hover {
   background-color: white;
-  border-color: #F6D155;
+  border-color: #f6d155;
   -webkit-transform: scale(1.15);
   -ms-transform: scale(1.15);
   transform: scale(1.15);
 }
 
-.dropDown{
+.dropDown {
   position: absolute;
-  top:60%;
-  right:10px;
+  top: 60%;
+  right: 10px;
 }
 
-.dropdown:hover .dropContent{
-    display: block;
+.dropdown:hover .dropContent {
+  display: block;
 }
 
-.dropdown:hover .dropButton{
+.dropdown:hover .dropButton {
   display: none;
 }
 
-.dropContent{
+.dropContent {
   display: none;
 }
 
-svg{
+svg {
   width: 50px;
   height: 50px;
 }
@@ -105,7 +127,6 @@ svg{
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   animation: dash 5s linear forwards;
-  
 }
 
 @keyframes dash {
