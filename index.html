@@ -6,18 +6,26 @@
    <title>Sign Finder</title>
    <link rel="stylesheet" type="text/css" href="css/style.css">
    <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+   <link href="css/jquery.datepicker.css" rel="stylesheet">
 </head>
 <body>
+	
+  <div class="navBar">
+    <span id="logo">Sign Finder</span>
 
-	<div id="map" height="460px" width="100%"></div>
+    <a id="mySigns">Table View</a>
+   
+  </div>
+
+	<div id="map" height="460px" width="100%">test</div>
    
    	<div class="dropDown">
-   		<button class="dropButton"><img class="icons" src="./icons/plus.png"></button>
+   		<button class="dropButton dButtons"><img class="icons" src="./icons/plus.png"></button>
    
 		<div class="dropContent">  
-			<button id="closure"><img class="icons" src="./icons/closure.png"></button>   
-			<button id="cone"><img class="icons" src="./icons/cone.png"></button>   
-			<button id="worker"><img class="icons" src="./icons/worker.png"></button>
+			<button class="dButtons" id="closure"><img class="icons" src="./icons/closure.png"></button>   
+			<button class="dButtons" id="cone"><img class="icons" src="./icons/cone.png"></button>   
+			<button class="dButtons" id="worker"><img class="icons" src="./icons/worker.png"></button>
    		</div>
    </div>
 
@@ -38,7 +46,8 @@
    <div id="form">
      <table>
 	     <tr><td>Date Placed: </td> <td id='date_placed'> </td> </tr>
-	     <tr><td>Pickup Date: </td><td> <input type='text' id='pickup_date'/></td></tr>
+	     <!-- <tr><td>Pickup Date: </td><td> <input type='text' id='pickup_date'/></td></tr> -->
+	     <tr><td>Pickup Date: </td><td><input type="text" name="date" id="date" data-select="datepicker"> </td></tr>
 	     <tr><td>Sign Type: </td> <td id='sign_type'></td></tr>
 	     <tr><td>Additional Info:</td><td><textarea rows="3" id='additional_info' > </textarea></td></tr>
 	     <tr><td></td><td><input type='button' value='Save' onclick='saveData()'/></td><td><input type='button' value="Cancel" onclick='deleteMarker()'></td></tr>
@@ -47,7 +56,11 @@
 
 
    <!-- Defines the info window text that displays on saving the info window form. -->
-   <div id="message">Location saved</div>
+   <!-- <div id="message">Location saved</div> -->
+    <div id="message">
+<svg width="27" height="27" viewbox="0 0 27 27">
+        <path class="path" fill="white" stroke="#92B558" stroke-width="2" stroke-miterlimit="10" width="100px" height="100px" viewBox="0 0 34 30" enable-background="new 0 0 34 33" xml:space="preserve" d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"/>
+</svg></div>
 
    <!-- <script src="js/user-added.js"></script> -->
    <!-- <script src="js/add-markers.js"></script> -->
@@ -60,5 +73,8 @@
    <script async defer
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV0kwE564QnAoy3NdhF6KH2jFKxYdwWi0&callback=initMap">
    </script>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script src="js/jquery.datepicker.js"></script>
+
 </body>
 </html>
