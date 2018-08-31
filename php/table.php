@@ -32,7 +32,7 @@ $result = $conn->query($sql);
 $fresult = $conn->query($future);
 
 
-    echo "<h3 class='tableTitle'>EXPIRED</h3><table class='tableView'><tr><th>PICK UP DATE</th><th>TYPE</th><th>LAT</th><th>LNG</th></tr>";
+    echo "<h3 class='tableTitle'>EXPIRED</h3><table class='tableView'><tr><th>PICK UP DATE</th><th>DELETE</th><th>TYPE</th><th>LAT</th><th>LNG</th></tr>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         
