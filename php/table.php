@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/style.css?">
+    <link rel="stylesheet" type="text/css" href="../css/style.css?1">
 </head>
 
 <body>
@@ -31,32 +31,32 @@ $result = $conn->query($sql);
 
 $fresult = $conn->query($future);
 
-if ($result->num_rows > 0) {
+
     echo "<h3 class='tableTitle'>EXPIRED</h3><table class='tableView'><tr><th>PICK UP DATE</th><th>TYPE</th><th>LAT</th><th>LNG</th></tr>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         
         
-        echo strtotime($pickup);
-        echo "<tr><td class='expiredDate'>" . $row['pickup']. "</td><td>" . $row['type']. "</td><td>" . $row['lat']. "</td><td>" . $row['lng']. "</td></tr>";
+        
+        echo "<tr><td class='expiredDate'>" . $row['pickup']. "</td><td><a href=\"delete.php?id=" . $row['id']. "\">Delete</a></td><td>" . $row['type']. "</td><td>" . $row['lat']. "</td><td>" . $row['lng']. "</td></tr>";
     }
     echo "</table>";
-} else {
-    echo "0 results";
+if ($result->num_rows <= 0) {
+    echo "0 EXPIRED SIGNS";
 }
 
-if ($fresult->num_rows > 0) {
-    echo "<h3 class='tableTitle'>UPCOMING</h3><table class='tableView'><tr><th>PICK UP DATE</th><th>TYPE</th><th>LAT</th><th>LNG</th></tr>";
+
+    echo "<h3 class='tableTitle'>UPCOMING</h3><table class='tableView'><tr><th>PICK UP DATE</th><th>DELETE</th><th>TYPE</th><th>LAT</th><th>LNG</th></tr>";
     // output data of each row
     while($row = $fresult->fetch_assoc()) {
         
         
-        echo strtotime($pickup);
-        echo "<tr><td>" . $row['pickup']. "</td><td>" . $row['type']. "</td><td>" . $row['lat']. "</td><td>" . $row['lng']. "</td></tr>";
+        
+        echo "<tr><td>" . $row['pickup']. "</td><td><a href=\"delete.php?id=" . $row['id']. "\">Delete</a></td><td>" . $row['type']. "</td><td>" . $row['lat']. "</td><td>" . $row['lng']. "</td></tr>";
     }
     echo "</table>";
-} else {
-    echo "0 results";
+if ($fresult->num_rows <= 0) {
+    echo "0 UPCOMING SIGNS";
 }
 
 $conn->close();
