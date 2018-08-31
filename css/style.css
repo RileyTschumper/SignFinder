@@ -7,27 +7,39 @@ body {
   font-family: "Sunflower", sans-serif;
   font-weight: lighter;
 }
+.expiredDate{
+  color: #ef8887;
+  font-weight: bold;
 
-table {
+}
+.tableTitle{
+  text-align: center;
+  color: #36404c;
+  font-weight: lighter;
+  margin-bottom:0px;
+ 
+}
+
+.tableView {
   display: flex;
   justify-content: center;
   border-collapse: collapse;
   min-width: 70%;
 }
 
-th,
-td {
+.tableView th, td {
   border-bottom: 1px solid #36404c;
   width: 20%;
   height: 50px;
   font-size: 16px;
 }
 
-th {
+.tableView th {
   color: #ef8887;
+  font-weight: lighter;
 }
 
-td:hover {
+.tableView td:hover {
   background-color: #f4cd8a;
   color: white;
 }

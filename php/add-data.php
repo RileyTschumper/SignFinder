@@ -12,7 +12,7 @@ $mysqli = new mysqli('localhost', $username, $password, $database);
 
 // Inserts new row with place data.
 // sprintf returns a formatted string
-$query = sprintf("INSERT INTO markers_icons " .
+$query = sprintf("INSERT INTO markers_icons" .
          " (id, placed, pickup, type, info, lat, lng ) " .
          " VALUES (NULL, '%s', '%s', '%s', '%s', '%s', '%s');",
          $mysqli->real_escape_string($placedDate),

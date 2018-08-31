@@ -1,5 +1,5 @@
 <?php 
 $username="root";
-$password="";
+$password="root";
 $database="signfinder";
 ?>
