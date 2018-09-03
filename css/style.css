@@ -140,6 +140,9 @@ i {
   margin-left:43%;
 }
 
+i:hover{
+  transform: scale(1.2);
+}
 
 .path {
   stroke-dasharray: 1000;
