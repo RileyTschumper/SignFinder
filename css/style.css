@@ -135,6 +135,12 @@ svg {
   height: 50px;
 }
 
+i {
+  color: #ef8887;
+  margin-left:43%;
+}
+
+
 .path {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
@@ -146,3 +152,5 @@ svg {
     stroke-dashoffset: 0;
   }
 }
+
+tr:nth-child(even) {background-color: #f2f2f2;}

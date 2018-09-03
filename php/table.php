@@ -2,7 +2,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/style.css?1">
+    <link rel="stylesheet" type="text/css" href="../css/style.css?4">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
 
 <body>
@@ -38,7 +39,7 @@ $fresult = $conn->query($future);
         
         
         
-        echo "<tr><td class='expiredDate'>" . $row['pickup']. "</td><td><a href=\"delete.php?id=" . $row['id']. "\">Delete</a></td><td>" . $row['type']. "</td><td>" . $row['lat']. "</td><td>" . $row['lng']. "</td></tr>";
+        echo "<tr><td class='expiredDate'>" . $row['pickup']. "</td><td><a href=\"delete.php?id=" . $row['id']. "\"><i class='fas fa-minus-circle'></i></a></td><td>" . $row['type']. "</td><td>" . $row['lat']. "</td><td>" . $row['lng']. "</td></tr>";
     }
     echo "</table>";
 if ($result->num_rows <= 0) {
@@ -52,7 +53,7 @@ if ($result->num_rows <= 0) {
         
         
         
-        echo "<tr><td>" . $row['pickup']. "</td><td><a href=\"delete.php?id=" . $row['id']. "\">Delete</a></td><td>" . $row['type']. "</td><td>" . $row['lat']. "</td><td>" . $row['lng']. "</td></tr>";
+        echo "<tr><td>" . $row['pickup']. "</td><td><a href=\"delete.php?id=" . $row['id']. "\"><i class='fas fa-minus-circle'></i></a></td><td>" . $row['type']. "</td><td>" . $row['lat']. "</td><td>" . $row['lng']. "</td></tr>";
     }
     echo "</table>";
 if ($fresult->num_rows <= 0) {
