@@ -26,13 +26,23 @@ var messagewindow;
 
 function initMap() {
   //map location variable
-  var california = { lat: 37.4419, lng: -122.1419 };
+  var california = { lat: 0, lng: 0 };
 
   //creates new Map object, displayed at the div with id='map'
+
   map = new google.maps.Map(document.getElementById("map"), {
     center: california,
     zoom: 13
   });
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      initialLocation = new google.maps.LatLng(
+        position.coords.latitude,
+        position.coords.longitude
+      );
+      map.setCenter(initialLocation);
+    });
+  }
 
   var infoWindow = new google.maps.InfoWindow();
 
