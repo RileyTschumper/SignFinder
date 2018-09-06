@@ -173,17 +173,17 @@ function saveData() {
   //stores each input value as variable
   var placedDate = document.getElementById("date_placed").innerHTML;
   var pickupDate = escape(document.getElementById("pickup_date").value);
-   var pickupDateArray = pickupDate.split("/");
+  var pickupDateArray = pickupDate.split("/");
   var pickupDate1 =
     pickupDateArray[2] + "-" + pickupDateArray[0] + "-" + pickupDateArray[1];
-    console.log(pickupDate1);
+  console.log(pickupDate1);
   var signType = getShortHand(document.getElementById("sign_type").innerHTML);
   console.log(signType);
   var additionalInfo = escape(document.getElementById("additional_info").value);
   var latlng = marker.getPosition();
   //creates a URL with 5 parameters to $_GET in php
   var url =
-    "http://localhost:8888/SignFinder/php/add-data.php?placedDate=" +
+    "http://localhost/SignFinder/php/add-data.php?placedDate=" +
     placedDate +
     "&pickupDate=" +
     pickupDate1 +
@@ -208,7 +208,7 @@ function saveData() {
   google.maps.event.clearInstanceListeners(map);
 
   //Reloads map
-  initMap();
+  window.location.reload(true);
 }
 
 function openFormWindow(googleMap, theMarker) {
