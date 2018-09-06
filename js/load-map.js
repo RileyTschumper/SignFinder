@@ -44,8 +44,6 @@ function initMap() {
     });
   }
 
-  var infoWindow = new google.maps.InfoWindow();
-
   downloadUrlDataAdd("php/xml_output.php", function(data) {
     var xml = data.responseXML;
     var markers = xml.documentElement.getElementsByTagName("marker");
@@ -60,51 +58,27 @@ function initMap() {
         parseFloat(markerElem.getAttribute("lng"))
       );
 
-      //Creates content for info window
-      var infowincontent = document.createElement("div");
-      var strong = document.createElement("strong");
-      strong.textContent = getLongHand(type);
-      infowincontent.appendChild(strong);
-
-      infowincontent.appendChild(document.createElement("br"));
-
-      var pickupText = document.createElement("text");
-      pickupText.textContent = "Pickup Date: " + pickup;
-      infowincontent.appendChild(pickupText);
-
-      infowincontent.appendChild(document.createElement("br"));
-
-      var text = document.createElement("text");
-      text.textContent = "Notes: " + info;
-      infowincontent.appendChild(text);
-
-      //adds marker with custom icon
-      var icon = customIcon[type] || {};
-      var marker = new google.maps.Marker({
-        map: map,
-        position: point,
-        icon: icon.iconURL
-      });
-      marker.addListener("click", function() {
-        infoWindow.setContent(infowincontent);
-        infoWindow.open(map, marker);
-      });
+      addMarker(type, point, pickup, info);
     });
   });
 
+  /*
   //creates an InfoWindow object
   formwindow = new google.maps.InfoWindow({
     content: document.getElementById("form")
   });
+  */
   messagewindow = new google.maps.InfoWindow({
     content: document.getElementById("message")
   });
 
+  addIconListeners();
+}
+
+function addIconListeners() {
   var cone = document.getElementById("cone");
   var worker = document.getElementById("worker");
   var closure = document.getElementById("closure");
-
-  console.log(cone);
 
   cone.onclick = function() {
     addMapListener("Traffic Cone", "icons/cone.png");
@@ -115,6 +89,40 @@ function initMap() {
   closure.onclick = function() {
     addMapListener("Road Closure", "icons/closure.png");
   };
+}
+
+function addMarker(type, point, pickup, info) {
+  var infoWindow = new google.maps.InfoWindow();
+
+  //Creates content for info window
+  var infowincontent = document.createElement("div");
+  var strong = document.createElement("strong");
+  strong.textContent = getLongHand(type);
+  infowincontent.appendChild(strong);
+
+  infowincontent.appendChild(document.createElement("br"));
+
+  var pickupText = document.createElement("text");
+  pickupText.textContent = "Pickup Date: " + pickup;
+  infowincontent.appendChild(pickupText);
+
+  infowincontent.appendChild(document.createElement("br"));
+
+  var text = document.createElement("text");
+  text.textContent = "Notes: " + info;
+  infowincontent.appendChild(text);
+
+  //adds marker with custom icon
+  var icon = customIcon[type] || {};
+  var marker = new google.maps.Marker({
+    map: map,
+    position: point,
+    icon: icon.iconURL
+  });
+  marker.addListener("click", function() {
+    infoWindow.setContent(infowincontent);
+    infoWindow.open(map, marker);
+  });
 }
 
 function getShortHand(longHand) {
