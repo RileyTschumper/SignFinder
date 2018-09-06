@@ -226,7 +226,7 @@ function saveData() {
   google.maps.event.clearInstanceListeners(map);
 
   //Reloads map
-  window.location.reload(true);
+  //window.location.reload(true);
 }
 
 function openFormWindow(googleMap, theMarker) {
@@ -234,8 +234,36 @@ function openFormWindow(googleMap, theMarker) {
 
   //console.log(document.getElementById("form"));
 
+  var htmlForm =
+    "<div id='form'>" +
+    "<table>" +
+    "<tr>" +
+    "<td>Date Placed: </td>" +
+    "<td id='date_placed'> </td>" +
+    "</tr>" +
+    "<tr>" +
+    "<td>Pickup Date: </td>" +
+    "<td><input type='text' name='date' id='pickup_date' data-select='datepicker' readonly> </td>" +
+    "</tr>" +
+    "<tr>" +
+    "<td>Sign Type: </td>" +
+    "<td id='sign_type'></td>" +
+    "</tr>" +
+    "<tr>" +
+    "<td>Additional Info:</td>" +
+    "<td><textarea rows='3' id='additional_info'> </textarea></td>" +
+    "</tr>" +
+    "<tr>" +
+    "<td></td>" +
+    "<td><input type='button' value='Save' onclick='saveData()' /></td>" +
+    "<td><input type='button' value='Cancel' onclick='deleteMarker()'></td>" +
+    "</tr>" +
+    "</table>" +
+    "</div>";
+
+  // content: document.getElementById("form");
   formwindow = new google.maps.InfoWindow({
-    content: document.getElementById("form")
+    content: htmlForm
   });
 
   console.log("after formwindow =");
