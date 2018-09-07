@@ -21,8 +21,21 @@ var customIcon = {
 
 var map;
 var marker;
+var markerArray = [];
 var formwindow;
 var messagewindow;
+
+function dynamicallyLoadScript(url) {
+  var script = document.createElement("script"); // Make a script DOM node
+  script.src = "js/jquery.datepicker.js"; // Set it's src to the provided URL
+
+  document.head.appendChild(script);
+
+  var script1 = document.createElement("script"); // Make a script DOM node
+  script1.src = "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"; // Set it's src to the provided URL
+
+  document.head.appendChild(script1); // Add it to the end of the head section of the page (could change 'head' to 'body' to add it to the end of the body section instead)
+}
 
 function initMap() {
   //map location variable
@@ -68,11 +81,26 @@ function initMap() {
     content: document.getElementById("form")
   });
   */
+  /*
   messagewindow = new google.maps.InfoWindow({
     content: document.getElementById("message")
   });
+  */
+
+  createMessageWindow();
 
   addIconListeners();
+}
+
+function createMessageWindow() {
+  var htmlMessage =
+    "<div id='message'>" +
+    "<svg width='27' height='27' viewbox='0 0 27 27'>" +
+    "<path class='path' fill='white' stroke='#92B558' stroke-width='2' stroke-miterlimit='10' width='100px' height='100px' viewBox='0 0 34 30' enable-background='new 0 0 34 33' xml:space='preserve' d='M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.6223.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z'/>" +
+    "</svg></div>";
+  messagewindow = new google.maps.InfoWindow({
+    content: htmlMessage
+  });
 }
 
 function addIconListeners() {
@@ -119,10 +147,13 @@ function addMarker(type, point, pickup, info) {
     position: point,
     icon: icon.iconURL
   });
+
   marker.addListener("click", function() {
     infoWindow.setContent(infowincontent);
     infoWindow.open(map, marker);
   });
+
+  markerArray.push(marker);
 }
 
 function getShortHand(longHand) {
@@ -133,6 +164,12 @@ function getShortHand(longHand) {
   typeMap.set("Road Closure", "closure");
 
   return typeMap.get(longHand);
+}
+
+function setMapOnAll(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markerArray[i].setMap(map);
+  }
 }
 
 function getLongHand(shortHand) {
